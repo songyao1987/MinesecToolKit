@@ -16,10 +16,9 @@ buildscript {
 allprojects {
     repositories {
         google()
-        jcenter()
         mavenCentral()
     }
-    group = 'com.minesec.android.toolkit'
+    group = 'io.github.songyao1987'
     version = rootProject.ext.VERSION_NAME
 }
 

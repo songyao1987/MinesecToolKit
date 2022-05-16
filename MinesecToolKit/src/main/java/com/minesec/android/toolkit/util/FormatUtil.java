@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.Locale;
 
 public class FormatUtil {
-    private String getFormatTransactionDateTime(String pattern,Date date) {
+    public static String getFormatTransactionDateTime(String pattern,Date date) {
         if (date == null) {
             return "";
         }

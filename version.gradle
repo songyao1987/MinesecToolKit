@@ -1,5 +1,5 @@
 ext.VERSION_CODE = 1
-ext.VERSION_NAME = '1.0.5'
+ext.VERSION_NAME = '1.0.7'
 
 if ("on".equalsIgnoreCase(BUILD_SNAPSHOT)) {
     ext.VERSION_NAME += "-SNAPSHOT"

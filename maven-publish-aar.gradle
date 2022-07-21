@@ -37,7 +37,7 @@ uploadArchives {
 
             pom.project {
                 name 'MinesecToolKit'
-                packaging 'aar' 
+                packaging 'aar'
                 // optionally artifactId can be defined here
                 description 'For Minesec development use only'
                 url 'https://github.com/songyao1987/MinesecToolKit'

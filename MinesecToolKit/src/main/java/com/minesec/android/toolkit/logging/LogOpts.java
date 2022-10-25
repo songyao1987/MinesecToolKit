@@ -11,12 +11,12 @@ public abstract class LogOpts {
     /**
      * enable/disable logging
      */
-    public static boolean ENABLE_LOGGING = false;
+    public static boolean ENABLE_LOGGING = true;
 
     /**
      * set default log level
      */
-    public static String DEFAULT_LEVEL = LogLevel.OFF;
+    public static String DEFAULT_LEVEL = LogLevel.TRACE;
 
     /**
      * enable/disable tcp logging
@@ -26,7 +26,7 @@ public abstract class LogOpts {
     /**
      * enable/disable http logging
      */
-    public static boolean ENABLE_HTTP_LOGGING = false;
+    public static boolean ENABLE_HTTP_LOGGING = true;
 
     public static String DEFAULT_LOGFILE_NAME = "MSPay";
 

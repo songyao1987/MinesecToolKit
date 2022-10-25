@@ -1,5 +1,7 @@
 package com.minesec.android.toolkit.logging;
 
+import java.util.TimeZone;
+
 /**
  * @author eric.song
  * @since 2022/9/13 10:04
@@ -28,9 +30,9 @@ public abstract class LogOpts {
 
     public static String DEFAULT_LOGFILE_NAME = "MSPay";
 
-    public static int DEFAULT_ROLLING_MAX_HISTORY = 6;
+    public static int DEFAULT_ROLLING_MAX_HISTORY = 2;
 
-    public static String DEFAULT_ROLLING_NAME_PATTERN = "-%d{yyyyMMdd}";
+    public static String DEFAULT_ROLLING_NAME_PATTERN = "-%d{yyyyMMdd," + TimeZone.getDefault().getID() + "}";
 
     public static String DEFAULT_LOGFILE_PATH = null;
 

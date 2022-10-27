@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.Locale;
 
 public class FormatUtil {
-    private final static String DATE_TIME_PATTERN_NO_SECOND = "yyyy/MM/dd,HH:mm";
+    private final static String DATE_TIME_PATTERN_NO_SECOND = "yyyy/MM/dd HH:mm";
     public static String getFormatTransactionDateTime(String pattern,Date date) {
         if (date == null) {
             return "";

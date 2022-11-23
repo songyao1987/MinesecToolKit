@@ -28,9 +28,9 @@ public abstract class LogOpts {
      */
     public static boolean ENABLE_HTTP_LOGGING = true;
 
-    public static String DEFAULT_LOGFILE_NAME = "MSPay";
+    public static String DEFAULT_LOGFILE_NAME = "ms-pay";
 
-    public static int DEFAULT_ROLLING_MAX_HISTORY = 2;
+    public static int DEFAULT_ROLLING_MAX_HISTORY = 3;
 
     public static String DEFAULT_ROLLING_NAME_PATTERN = "-%d{yyyyMMdd," + TimeZone.getDefault().getID() + "}";
 

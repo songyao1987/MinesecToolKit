@@ -9,7 +9,6 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.inputmethodservice.Keyboard;
 import android.inputmethodservice.KeyboardView;
-import android.text.TextUtils;
 import android.util.AttributeSet;
 
 import androidx.annotation.NonNull;
@@ -18,10 +17,6 @@ import com.minesec.android.toolkit.R;
 
 import java.util.List;
 
-/**
- * @author eric.song
- * @since 2022/7/26 9:24
- */
 public class NumberKeyboardView extends KeyboardView {
     private Context mContext;
     private Rect mRect;
@@ -67,8 +62,6 @@ public class NumberKeyboardView extends KeyboardView {
         if (key.codes.length > 0 && key.codes[0] != 0) {
             drawable.setState(drawableState);
         }
-//        drawable.setBounds(key.x, key.y, key.x + key.width, key.y + key.height);
-//        drawable.draw(canvas);
     }
 
     private void drawText(Canvas canvas, Keyboard.Key key) {
@@ -76,28 +69,11 @@ public class NumberKeyboardView extends KeyboardView {
         mPaint.setAntiAlias(true);
         if (key.label != null) {
             String label = key.label.toString();
-            int labelTextSize = 48;
             int keyTextSize = 64;
-//            Field field;
-//            try {
-//                field = KeyboardView.class.getDeclaredField("mLabelTextSize");
-//                field.setAccessible(true);
-//                labelTextSize = ((int) field.get(this));
-//                field = KeyboardView.class.getDeclaredField("mKeyTextSize");
-//                field.setAccessible(true);
-//                keyTextSize = ((int) field.get(this));
-//            } catch (NoSuchFieldException | IllegalAccessException e) {
-//                e.printStackTrace();
-//            }
-            if (!TextUtils.isDigitsOnly(label)) {
-                mPaint.setColor(Color.parseColor("#e60000"));
-                mPaint.setTextSize(labelTextSize);
-                mPaint.setTypeface(Typeface.DEFAULT);
-            } else {
-                mPaint.setColor(Color.BLACK);
-                mPaint.setTextSize(keyTextSize);
-                mPaint.setTypeface(Typeface.DEFAULT);
-            }
+
+            mPaint.setColor(Color.BLACK);
+            mPaint.setTextSize(keyTextSize);
+            mPaint.setTypeface(Typeface.DEFAULT);
             mPaint.getTextBounds(label, 0, label.length(), mRect);
             canvas.drawText(label,
                     key.x + key.width / 2,

@@ -2,7 +2,7 @@
 <Keyboard xmlns:android="http://schemas.android.com/apk/res/android"
     android:horizontalGap="0px"
     android:keyHeight="10%p"
-    android:keyWidth="30%p"
+    android:keyWidth="33%p"
     android:verticalGap="0px">
 
     <Row>
@@ -18,11 +18,11 @@
             android:codes="51"
             android:isRepeatable="true"
             android:keyLabel="@string/key_3"/>
-<!--        <Key-->
-<!--            android:codes="-3"-->
-<!--            android:isRepeatable="true"-->
-<!--            android:keyEdgeFlags="right"-->
-<!--            android:keyLabel="@string/key_cancel"/>-->
+        <!--        <Key-->
+        <!--            android:codes="-3"-->
+        <!--            android:isRepeatable="true"-->
+        <!--            android:keyEdgeFlags="right"-->
+        <!--            android:keyLabel="@string/key_cancel"/>-->
     </Row>
 
     <Row>
@@ -38,11 +38,11 @@
             android:codes="54"
             android:isRepeatable="true"
             android:keyLabel="@string/key_6"/>
-<!--        <Key-->
-<!--            android:codes="-5"-->
-<!--            android:isRepeatable="true"-->
-<!--            android:keyEdgeFlags="right"-->
-<!--            android:keyIcon="@drawable/ic_delete"/>-->
+        <!--        <Key-->
+        <!--            android:codes="-5"-->
+        <!--            android:isRepeatable="true"-->
+        <!--            android:keyEdgeFlags="right"-->
+        <!--            android:keyIcon="@drawable/ic_delete"/>-->
     </Row>
 
     <Row>
@@ -58,23 +58,22 @@
             android:codes="57"
             android:isRepeatable="true"
             android:keyLabel="@string/key_9"/>
-<!--        <Key-->
-<!--            android:codes="-4"-->
-<!--            android:keyEdgeFlags="right"-->
-<!--            android:keyHeight="32%p"-->
-<!--            android:keyIcon="@drawable/ic_confirm"/>-->
+        <!--        <Key-->
+        <!--            android:codes="-4"-->
+        <!--            android:keyEdgeFlags="right"-->
+        <!--            android:keyHeight="32%p"-->
+        <!--            android:keyIcon="@drawable/ic_confirm"/>-->
     </Row>
 
     <Row>
         <!-- key code -1 alt -->
-<!--        <Key-->
-<!--            android:codes="-6"-->
-<!--            android:keyLabel=""/>-->
+        <!--        <Key-->
+        <!--            android:codes="-6"-->
+        <!--            android:keyLabel=""/>-->
         <Key
             android:codes="-5"
             android:isRepeatable="true"
-            android:keyEdgeFlags="right"
-            android:keyIcon="@drawable/ic_delete"/>
+            android:keyIcon="@drawable/ic_delete_key"/>
         <Key
             android:codes="48"
             android:isRepeatable="true"

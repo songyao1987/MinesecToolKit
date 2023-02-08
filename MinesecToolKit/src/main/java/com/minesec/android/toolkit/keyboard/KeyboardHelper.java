@@ -30,7 +30,7 @@ public class KeyboardHelper {
     public static final int INPUT_TYPE_NUMBER = 0;
     public static final int INPUT_TYPE_NUMBER_DECIMAL = 1;
     public static final int INPUT_TYPE_CHAR_NUMBER = 3;
-    public static final int INPUT_TYPE_PASSWORD = 16; 
+    public static final int INPUT_TYPE_PASSWORD = 16;
 
     private Context mContext;
     private Keyboard mKeyboard;
@@ -40,8 +40,8 @@ public class KeyboardHelper {
     private EditText mEditText;
     private boolean mIsShowAlways = true;
 
-    private OnOkClickListener mOkClickListener;
-    private OnCancelClickListener mCancelClickListener;
+    private com.minesec.android.toolkit.keyboard.KeyboardHelper.OnOkClickListener mOkClickListener;
+    private com.minesec.android.toolkit.keyboard.KeyboardHelper.OnCancelClickListener mCancelClickListener;
     private final KeyboardView.OnKeyboardActionListener mKeyboardActionListener = new KeyboardView
             .OnKeyboardActionListener() {
         @Override
@@ -160,7 +160,7 @@ public class KeyboardHelper {
 
     public KeyboardHelper(Context context, KeyboardView keyboardView) {
         mContext = context;
-        mKeyboard = new Keyboard(context, R.xml.number_keyboard);
+        mKeyboard = new Keyboard(context, R.xml.payment_number_keyboard);
         mKeyboardView = keyboardView;
     }
 
@@ -259,11 +259,11 @@ public class KeyboardHelper {
         }
     }
 
-    public void setOnOkClickListener(OnOkClickListener okClickListener) {
+    public void setOnOkClickListener(com.minesec.android.toolkit.keyboard.KeyboardHelper.OnOkClickListener okClickListener) {
         mOkClickListener = okClickListener;
     }
 
-    public void setOnCancelClickListener(OnCancelClickListener cancelClickListener) {
+    public void setOnCancelClickListener(com.minesec.android.toolkit.keyboard.KeyboardHelper.OnCancelClickListener cancelClickListener) {
         mCancelClickListener = cancelClickListener;
     }
 

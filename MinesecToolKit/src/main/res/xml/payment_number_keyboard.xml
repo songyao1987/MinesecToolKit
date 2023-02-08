@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Keyboard xmlns:android="http://schemas.android.com/apk/res/android"
+    android:horizontalGap="0px"
+    android:keyHeight="10%p"
+    android:keyWidth="33%p"
+    android:verticalGap="0px">
+
+    <Row>
+        <Key
+            android:codes="49"
+            android:isRepeatable="true"
+            android:keyLabel="@string/key_1"/>
+        <Key
+            android:codes="50"
+            android:isRepeatable="true"
+            android:keyLabel="@string/key_2"/>
+        <Key
+            android:codes="51"
+            android:isRepeatable="true"
+            android:keyLabel="@string/key_3"/>
+        <!--        <Key-->
+        <!--            android:codes="-3"-->
+        <!--            android:isRepeatable="true"-->
+        <!--            android:keyEdgeFlags="right"-->
+        <!--            android:keyLabel="@string/key_cancel"/>-->
+    </Row>
+
+    <Row>
+        <Key
+            android:codes="52"
+            android:isRepeatable="true"
+            android:keyLabel="@string/key_4"/>
+        <Key
+            android:codes="53"
+            android:isRepeatable="true"
+            android:keyLabel="@string/key_5"/>
+        <Key
+            android:codes="54"
+            android:isRepeatable="true"
+            android:keyLabel="@string/key_6"/>
+        <!--        <Key-->
+        <!--            android:codes="-5"-->
+        <!--            android:isRepeatable="true"-->
+        <!--            android:keyEdgeFlags="right"-->
+        <!--            android:keyIcon="@drawable/ic_delete"/>-->
+    </Row>
+
+    <Row>
+        <Key
+            android:codes="55"
+            android:isRepeatable="true"
+            android:keyLabel="@string/key_7"/>
+        <Key
+            android:codes="56"
+            android:isRepeatable="true"
+            android:keyLabel="@string/key_8"/>
+        <Key
+            android:codes="57"
+            android:isRepeatable="true"
+            android:keyLabel="@string/key_9"/>
+        <!--        <Key-->
+        <!--            android:codes="-4"-->
+        <!--            android:keyEdgeFlags="right"-->
+        <!--            android:keyHeight="32%p"-->
+        <!--            android:keyIcon="@drawable/ic_confirm"/>-->
+    </Row>
+
+    <Row>
+        <!-- key code -1 alt -->
+        <!--        <Key-->
+        <!--            android:codes="-6"-->
+        <!--            android:keyLabel=""/>-->
+        <Key
+            android:codes="-5"
+            android:isRepeatable="true"
+            android:keyIcon="@drawable/ic_delete_key"/>
+        <Key
+            android:codes="48"
+            android:isRepeatable="true"
+            android:keyLabel="@string/key_0"/>
+
+        <!-- key code -1 shift -->
+        <!-- use as double 0 here -->
+        <Key
+            android:codes="-1"
+            android:isRepeatable="true"
+            android:keyLabel="@string/key_00"/>
+    </Row>
+</Keyboard>

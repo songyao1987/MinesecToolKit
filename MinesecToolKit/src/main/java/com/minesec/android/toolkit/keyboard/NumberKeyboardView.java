@@ -14,9 +14,12 @@ import android.util.AttributeSet;
 import androidx.annotation.NonNull;
 
 import com.minesec.android.toolkit.R;
-
 import java.util.List;
 
+/**
+ * @author eric.song
+ * @since 2023/3/23 12:15
+ */
 public class NumberKeyboardView extends KeyboardView {
     private Context mContext;
     private Rect mRect;
@@ -49,7 +52,7 @@ public class NumberKeyboardView extends KeyboardView {
         }
         if (keys != null) {
             for (Keyboard.Key key : keys) {
-                drawKeyBackground(R.drawable.bg_keyboard, canvas, key);
+                drawKeyBackground(R.drawable.bg_outline_purple, canvas, key);
                 drawText(canvas, key);
             }
         }
@@ -62,6 +65,9 @@ public class NumberKeyboardView extends KeyboardView {
         if (key.codes.length > 0 && key.codes[0] != 0) {
             drawable.setState(drawableState);
         }
+        drawable.setBounds(key.x, key.y, key.x + key.width, key.y
+                + key.height);
+        drawable.draw(canvas);
     }
 
     private void drawText(Canvas canvas, Keyboard.Key key) {

@@ -1,5 +1,9 @@
 package com.minesec.android.toolkit.keyboard;
 
+/**
+ * @author eric.song
+ * @since 2023/3/23 12:13
+ */
 import android.content.Context;
 import android.content.res.Configuration;
 import android.inputmethodservice.Keyboard;
@@ -7,16 +11,20 @@ import android.inputmethodservice.KeyboardView;
 import android.os.Build;
 import android.text.Editable;
 import android.text.InputType;
+import android.text.SpannableString;
+import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.RelativeSizeSpan;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
+import androidx.annotation.RequiresApi;
+
 import com.minesec.android.toolkit.R;
 import com.minesec.android.toolkit.util.StringUtil;
-
-import java.lang.reflect.Method;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -40,8 +48,8 @@ public class KeyboardHelper {
     private EditText mEditText;
     private boolean mIsShowAlways = true;
 
-    private com.minesec.android.toolkit.keyboard.KeyboardHelper.OnOkClickListener mOkClickListener;
-    private com.minesec.android.toolkit.keyboard.KeyboardHelper.OnCancelClickListener mCancelClickListener;
+    private KeyboardHelper.OnOkClickListener mOkClickListener;
+    private KeyboardHelper.OnCancelClickListener mCancelClickListener;
     private final KeyboardView.OnKeyboardActionListener mKeyboardActionListener = new KeyboardView
             .OnKeyboardActionListener() {
         @Override
@@ -68,6 +76,9 @@ public class KeyboardHelper {
                             text.delete(selectionStart, selectionEnd);
                         } else if (selectionStart > 0) {
                             text.delete(selectionStart - 1, selectionStart);
+                        }
+                        if (text.length() < 6) {
+                            text.insert(2,"0");
                         }
                     }
                     break;
@@ -199,20 +210,7 @@ public class KeyboardHelper {
     }
 
     private void hideSystemKeyboard(EditText editText) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            editText.setShowSoftInputOnFocus(false);
-        } else {
-            try {
-                // Through reflection on API 16+.
-                // The method name might be "setSoftInputShownOnFocus" on API 14-15
-                Method setShowSoftInputOnFocus =
-                        EditText.class.getMethod("setShowSoftInputOnFocus", boolean.class);
-                setShowSoftInputOnFocus.setAccessible(true);
-                setShowSoftInputOnFocus.invoke(editText, false);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+        editText.setShowSoftInputOnFocus(false);
         // Hide system soft keyboard if already shown.
         InputMethodManager imm =
                 (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -259,11 +257,11 @@ public class KeyboardHelper {
         }
     }
 
-    public void setOnOkClickListener(com.minesec.android.toolkit.keyboard.KeyboardHelper.OnOkClickListener okClickListener) {
+    public void setOnOkClickListener(KeyboardHelper.OnOkClickListener okClickListener) {
         mOkClickListener = okClickListener;
     }
 
-    public void setOnCancelClickListener(com.minesec.android.toolkit.keyboard.KeyboardHelper.OnCancelClickListener cancelClickListener) {
+    public void setOnCancelClickListener(KeyboardHelper.OnCancelClickListener cancelClickListener) {
         mCancelClickListener = cancelClickListener;
     }
 
@@ -309,9 +307,11 @@ public class KeyboardHelper {
         return result;
     }
 
-    private AmountTextWatcher mTextWatcher = new AmountTextWatcher();
+    boolean isFormatting = false;
 
-    private static class AmountTextWatcher implements TextWatcher {
+    private final AmountTextWatcher mTextWatcher = new AmountTextWatcher();
+
+    private class AmountTextWatcher implements TextWatcher {
         private static final String POINTER = ".";
         private static final String ZERO = "0";
 
@@ -327,6 +327,7 @@ public class KeyboardHelper {
 
         private boolean isManual = true;
 
+        @RequiresApi(api = Build.VERSION_CODES.M)
         @Override
         public void afterTextChanged(Editable s) {
             //"after text changed:" + s
@@ -337,6 +338,10 @@ public class KeyboardHelper {
                     isManual = true;
                     return;
                 }
+                if (text.contains(" ")) {
+                    text = text.substring(text.indexOf(" ") + 1);
+                }
+
                 //"before text:" + text
                 if (!text.contains(POINTER)) {
                     s.insert(0, "0.0");
@@ -370,9 +375,29 @@ public class KeyboardHelper {
                     }
                 }
                 text = s.toString();
-                if (text.startsWith(ZERO) && text.charAt(1) != '.') {
-                    s.delete(0, 1);
+                String str = text;
+                if (str.startsWith("$")) {
+                    str = str.substring(2);
+                    if (str.startsWith(ZERO) && str.charAt(1) != '.') {
+                        s.delete(2,3);
+                    }
+                } else {
+                    if (text.startsWith(ZERO) && text.charAt(1) != '.') {
+                        s.delete(0, 1);
+                    }
                 }
+                if (!isFormatting && s.length() > 0) {
+                    isFormatting = true;
+                    String formattedText = "$ " + s.toString();
+                    mEditText.removeTextChangedListener(this);
+                    SpannableString spannableString = new SpannableString(formattedText);
+                    spannableString.setSpan(new ForegroundColorSpan(mContext.getColor(R.color.colorAccent)), 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    spannableString.setSpan(new RelativeSizeSpan(0.7f), 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    mEditText.setText(spannableString);
+                    mEditText.setSelection(formattedText.length());
+                    mEditText.addTextChangedListener(this);
+                }
+
                 isManual = true;
                 //"after text:" + text
             }

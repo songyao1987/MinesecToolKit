@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Keyboard xmlns:android="http://schemas.android.com/apk/res/android"
-    android:horizontalGap="0px"
-    android:keyHeight="10%p"
-    android:keyWidth="33%p"
-    android:verticalGap="0px">
+    android:horizontalGap="8px"
+    android:keyHeight="60dp"
+    android:keyWidth="107dp"
+    android:verticalGap="7px">
 
     <Row>
         <Key
@@ -70,10 +70,12 @@
         <!--        <Key-->
         <!--            android:codes="-6"-->
         <!--            android:keyLabel=""/>-->
+
         <Key
-            android:codes="-5"
+            android:codes="-1"
             android:isRepeatable="true"
-            android:keyIcon="@drawable/ic_delete_key"/>
+            android:keyLabel="@string/key_00"/>
+
         <Key
             android:codes="48"
             android:isRepeatable="true"
@@ -82,8 +84,8 @@
         <!-- key code -1 shift -->
         <!-- use as double 0 here -->
         <Key
-            android:codes="-1"
+            android:codes="-5"
             android:isRepeatable="true"
-            android:keyLabel="@string/key_00"/>
+            android:keyIcon="@drawable/ic_delete_key"/>
     </Row>
 </Keyboard>

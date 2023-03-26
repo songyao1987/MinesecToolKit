@@ -26,7 +26,12 @@ public class ReceiptByPrintLines implements ReceiptBuilder{
                 if(!StringUtils.isEmpty(decodeUrl)) {
                     receipt.append(new QrRow(decodeUrl, 200));
                 }
-            }else {
+            } else if (line.startsWith("@1@")) {
+                receipt.append(new TextRow(line.substring(3)).fontSize(TextRow.FONT_SIZE_NORMAL));
+            } else if (line.startsWith("@2@")) {
+                receipt.append(new TextRow(line.substring(3)).fontSize(TextRow.FONT_SIZE_LARGE).fontStyle(TextRow.FONT_STYLE_BOLD));
+
+            } else {
                 receipt.append(new TextRow(line)).fontSize(fontSize);
             }
         }

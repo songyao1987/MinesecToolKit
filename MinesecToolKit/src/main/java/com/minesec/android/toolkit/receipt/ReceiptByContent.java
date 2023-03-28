@@ -12,8 +12,8 @@ import java.util.List;
 class ReceiptByContent extends ReceiptByPrintLines {
 
     private static List<String> toPrintLines(String content) {
-        String raw = Base64.getDecoder().decodeToString(content);
-        String[] lines = raw.split("\n");
+//        String raw = Base64.getDecoder().decodeToString(content);
+        String[] lines = content.split("\n");
         return Arrays.asList(lines);
     }
 

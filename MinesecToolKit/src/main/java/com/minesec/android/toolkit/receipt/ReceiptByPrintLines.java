@@ -1,8 +1,16 @@
 package com.minesec.android.toolkit.receipt;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
 import com.minesec.android.toolkit.util.StringUtils;
 
+import java.io.ByteArrayInputStream;
 import java.net.URLDecoder;
+import java.util.Base64;
 import java.util.List;
 
 /**
@@ -16,6 +24,7 @@ public class ReceiptByPrintLines implements ReceiptBuilder{
         this.lines = lines;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public Receipt build() {
         Receipt receipt = new Receipt();
@@ -31,6 +40,9 @@ public class ReceiptByPrintLines implements ReceiptBuilder{
             } else if (line.startsWith("@2@")) {
                 receipt.append(new TextRow(line.substring(3)).fontSize(TextRow.FONT_SIZE_LARGE).fontStyle(TextRow.FONT_STYLE_BOLD));
 
+            } else if (line.startsWith("@IMG@")) {
+                String data = line.substring(5);
+                receipt.append(new ImageRow(fromString(data)));
             } else {
                 receipt.append(new TextRow(line)).fontSize(fontSize);
             }
@@ -47,5 +59,11 @@ public class ReceiptByPrintLines implements ReceiptBuilder{
             e.printStackTrace();
         }
         return "";
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private Bitmap fromString(String data) {
+        byte[] bytes = Base64.getDecoder().decode(data);
+        return BitmapFactory.decodeStream(new ByteArrayInputStream(bytes));
     }
 }
